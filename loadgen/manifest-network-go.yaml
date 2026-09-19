@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-go-network
+  labels:
+    app: loadgen
+    target: go-network
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: loadgen
+        target: go-network
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: loadgen
+          image: <image_registry>/mbsaiaditya/loadgen:v1
+          env:
+            - name: TARGET_URL
+              value: "http://go-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1"
+            - name: CONCURRENCY_LEVELS
+              value: "5000, 6000, 7000, 8000, 9000, 10000"
+            - name: DURATION_SEC
+              value: "10"
+            - name: LABEL
+              value: "go-network"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }

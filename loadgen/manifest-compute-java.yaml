@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-java-compute
+  labels:
+    app: loadgen
+    target: java-compute
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: loadgen
+        target: java-compute
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: loadgen
+          image: <image_registry>/mbsaiaditya/loadgen:v1
+          env:
+            - name: TARGET_URL
+              value: "http://java-compute.test-iam-mbsa.svc.cluster.local:8080/compute?limit=200000&workers=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1,5,10,20,50,100,200,500,1000,2000,5000"
+            - name: DURATION_SEC
+              value: "10"
+            - name: LABEL
+              value: "java-compute"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }

@@ -1,0 +1,66 @@
+2026-08-27T04:09:00.823792+00:00 [loadgen:go-network] target=http://go-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[1, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000] duration_per_level=10s
+2026-08-27T04:09:00.823991+00:00 [loadgen:go-network] --- testing concurrency=1 for 10s ---
+2026-08-27T04:09:10.865619+00:00 [loadgen:go-network] RESULT concurrency=1 rps=19.10 avg_ms=52.56 p50_ms=52.46 p90_ms=52.69 p99_ms=52.99 errors=0 error_rate=0.00%
+2026-08-27T04:09:10.865648+00:00 [loadgen:go-network] --- testing concurrency=5 for 10s ---
+2026-08-27T04:09:20.896246+00:00 [loadgen:go-network] RESULT concurrency=5 rps=95.00 avg_ms=52.78 p50_ms=52.72 p90_ms=53.20 p99_ms=53.85 errors=0 error_rate=0.00%
+2026-08-27T04:09:20.896275+00:00 [loadgen:go-network] --- testing concurrency=10 for 10s ---
+2026-08-27T04:09:30.932243+00:00 [loadgen:go-network] RESULT concurrency=10 rps=190.00 avg_ms=52.81 p50_ms=52.73 p90_ms=53.47 p99_ms=55.12 errors=0 error_rate=0.00%
+2026-08-27T04:09:30.932268+00:00 [loadgen:go-network] --- testing concurrency=20 for 10s ---
+2026-08-27T04:09:40.972020+00:00 [loadgen:go-network] RESULT concurrency=20 rps=380.00 avg_ms=52.82 p50_ms=52.70 p90_ms=53.41 p99_ms=55.58 errors=0 error_rate=0.00%
+2026-08-27T04:09:40.972047+00:00 [loadgen:go-network] --- testing concurrency=50 for 10s ---
+2026-08-27T04:09:50.998726+00:00 [loadgen:go-network] RESULT concurrency=50 rps=945.10 avg_ms=52.98 p50_ms=52.75 p90_ms=53.95 p99_ms=56.40 errors=0 error_rate=0.00%
+2026-08-27T04:09:50.998754+00:00 [loadgen:go-network] --- testing concurrency=100 for 10s ---
+2026-08-27T04:10:01.066429+00:00 [loadgen:go-network] RESULT concurrency=100 rps=1876.30 avg_ms=53.43 p50_ms=52.66 p90_ms=54.90 p99_ms=67.75 errors=0 error_rate=0.00%
+2026-08-27T04:10:01.066457+00:00 [loadgen:go-network] --- testing concurrency=200 for 10s ---
+2026-08-27T04:10:11.135457+00:00 [loadgen:go-network] RESULT concurrency=200 rps=3617.10 avg_ms=55.38 p50_ms=53.69 p90_ms=59.49 p99_ms=81.98 errors=0 error_rate=0.00%
+2026-08-27T04:10:11.135488+00:00 [loadgen:go-network] --- testing concurrency=500 for 10s ---
+2026-08-27T04:10:21.235043+00:00 [loadgen:go-network] RESULT concurrency=500 rps=8021.20 avg_ms=62.40 p50_ms=59.37 p90_ms=71.97 p99_ms=143.24 errors=0 error_rate=0.00%
+2026-08-27T04:10:21.235073+00:00 [loadgen:go-network] --- testing concurrency=1000 for 10s ---
+2026-08-27T04:10:31.398163+00:00 [loadgen:go-network] RESULT concurrency=1000 rps=10084.90 avg_ms=99.37 p50_ms=93.90 p90_ms=120.31 p99_ms=237.52 errors=0 error_rate=0.00%
+2026-08-27T04:10:31.398195+00:00 [loadgen:go-network] --- testing concurrency=2000 for 10s ---
+2026-08-27T04:10:41.564324+00:00 [loadgen:go-network] RESULT concurrency=2000 rps=8172.80 avg_ms=245.02 p50_ms=227.37 p90_ms=302.51 p99_ms=558.10 errors=0 error_rate=0.00%
+2026-08-27T04:10:41.564358+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=0.00%, p99=558.10ms vs baseline=52.99ms) ***
+2026-08-27T04:10:41.564364+00:00 [loadgen:go-network] --- testing concurrency=5000 for 10s ---
+2026-08-27T04:10:52.120982+00:00 [loadgen:go-network] RESULT concurrency=5000 rps=5635.10 avg_ms=904.77 p50_ms=856.83 p90_ms=1027.44 p99_ms=2121.45 errors=0 error_rate=0.00%
+2026-08-27T04:10:52.121016+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=0.00%, p99=2121.45ms vs baseline=52.99ms) ***
+2026-08-27T04:10:52.121039+00:00 [loadgen:go-network] === summary ===
+2026-08-27T04:10:52.121053+00:00 [loadgen:go-network] concurrency=     1 rps=    19.10 p50=   52.46ms p90=   52.69ms p99=   52.99ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121061+00:00 [loadgen:go-network] concurrency=     5 rps=    95.00 p50=   52.72ms p90=   53.20ms p99=   53.85ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121068+00:00 [loadgen:go-network] concurrency=    10 rps=   190.00 p50=   52.73ms p90=   53.47ms p99=   55.12ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121074+00:00 [loadgen:go-network] concurrency=    20 rps=   380.00 p50=   52.70ms p90=   53.41ms p99=   55.58ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121080+00:00 [loadgen:go-network] concurrency=    50 rps=   945.10 p50=   52.75ms p90=   53.95ms p99=   56.40ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121085+00:00 [loadgen:go-network] concurrency=   100 rps=  1876.30 p50=   52.66ms p90=   54.90ms p99=   67.75ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121091+00:00 [loadgen:go-network] concurrency=   200 rps=  3617.10 p50=   53.69ms p90=   59.49ms p99=   81.98ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121097+00:00 [loadgen:go-network] concurrency=   500 rps=  8021.20 p50=   59.37ms p90=   71.97ms p99=  143.24ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121105+00:00 [loadgen:go-network] concurrency=  1000 rps= 10084.90 p50=   93.90ms p90=  120.31ms p99=  237.52ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121110+00:00 [loadgen:go-network] concurrency=  2000 rps=  8172.80 p50=  227.37ms p90=  302.51ms p99=  558.10ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121116+00:00 [loadgen:go-network] concurrency=  5000 rps=  5635.10 p50=  856.83ms p90= 1027.44ms p99= 2121.45ms errors=     0 error_rate=0.00%
+2026-08-27T04:10:52.121119+00:00 [loadgen:go-network] results written to /tmp/results.csv
+
+
+
+Breakpoint searching
+
+2026-09-06T15:39:35.990926+00:00 [loadgen:go-network] target=http://go-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[5000, 6000, 7000, 8000, 9000, 10000] duration_per_level=10s
+2026-09-06T15:39:35.991146+00:00 [loadgen:go-network] --- testing concurrency=5000 for 10s ---
+2026-09-06T15:39:46.415394+00:00 [loadgen:go-network] RESULT concurrency=5000 rps=5239.10 avg_ms=961.84 p50_ms=843.13 p90_ms=1068.37 p99_ms=2429.36 errors=0 error_rate=0.00%
+2026-09-06T15:39:46.415425+00:00 [loadgen:go-network] --- testing concurrency=6000 for 10s ---
+2026-09-06T15:39:56.915885+00:00 [loadgen:go-network] RESULT concurrency=6000 rps=5390.40 avg_ms=1115.34 p50_ms=1073.02 p90_ms=1426.45 p99_ms=2027.26 errors=0 error_rate=0.00%
+2026-09-06T15:39:56.915919+00:00 [loadgen:go-network] --- testing concurrency=7000 for 10s ---
+2026-09-06T15:40:07.757453+00:00 [loadgen:go-network] RESULT concurrency=7000 rps=3378.70 avg_ms=2119.24 p50_ms=1278.69 p90_ms=5435.87 p99_ms=5980.40 errors=0 error_rate=0.00%
+2026-09-06T15:40:07.757486+00:00 [loadgen:go-network] --- testing concurrency=8000 for 10s ---
+2026-09-06T15:40:18.418412+00:00 [loadgen:go-network] RESULT concurrency=8000 rps=1554.60 avg_ms=5142.74 p50_ms=8031.67 p90_ms=9144.78 p99_ms=9851.18 errors=0 error_rate=0.00%
+2026-09-06T15:40:18.418443+00:00 [loadgen:go-network] --- testing concurrency=9000 for 10s ---
+2026-09-06T15:40:40.567707+00:00 [loadgen:go-network] RESULT concurrency=9000 rps=1325.30 avg_ms=11862.83 p50_ms=14299.87 p90_ms=21956.47 p99_ms=22066.61 errors=13253 error_rate=100.00%
+2026-09-06T15:40:40.567741+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=9000 (error_rate=100.00%, p99=22066.61ms vs baseline=2429.36ms) ***
+2026-09-06T15:40:40.567748+00:00 [loadgen:go-network] --- testing concurrency=10000 for 10s ---
+2026-09-06T15:40:58.933278+00:00 [loadgen:go-network] RESULT concurrency=10000 rps=1552.30 avg_ms=10519.77 p50_ms=14482.04 p90_ms=18122.90 p99_ms=18262.23 errors=15522 error_rate=99.99%
+2026-09-06T15:40:58.933310+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=10000 (error_rate=99.99%, p99=18262.23ms vs baseline=2429.36ms) ***
+2026-09-06T15:40:58.933333+00:00 [loadgen:go-network] === summary ===
+2026-09-06T15:40:58.933345+00:00 [loadgen:go-network] concurrency=  5000 rps=  5239.10 p50=  843.13ms p90= 1068.37ms p99= 2429.36ms errors=     0 error_rate=0.00%
+2026-09-06T15:40:58.933352+00:00 [loadgen:go-network] concurrency=  6000 rps=  5390.40 p50= 1073.02ms p90= 1426.45ms p99= 2027.26ms errors=     0 error_rate=0.00%
+2026-09-06T15:40:58.933357+00:00 [loadgen:go-network] concurrency=  7000 rps=  3378.70 p50= 1278.69ms p90= 5435.87ms p99= 5980.40ms errors=     0 error_rate=0.00%
+2026-09-06T15:40:58.933363+00:00 [loadgen:go-network] concurrency=  8000 rps=  1554.60 p50= 8031.67ms p90= 9144.78ms p99= 9851.18ms errors=     0 error_rate=0.00%
+2026-09-06T15:40:58.933369+00:00 [loadgen:go-network] concurrency=  9000 rps=  1325.30 p50=14299.87ms p90=21956.47ms p99=22066.61ms errors= 13253 error_rate=100.00%
+2026-09-06T15:40:58.933374+00:00 [loadgen:go-network] concurrency= 10000 rps=  1552.30 p50=14482.04ms p90=18122.90ms p99=18262.23ms errors= 15522 error_rate=99.99%
+2026-09-06T15:40:58.933378+00:00 [loadgen:go-network] results written to /tmp/results.csv

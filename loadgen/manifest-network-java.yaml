@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-java-network
+  labels:
+    app: loadgen
+    target: java-network
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: loadgen
+        target: java-network
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: loadgen
+          image: <image_registry>/mbsaiaditya/loadgen:v1
+          env:
+            - name: TARGET_URL
+              value: "http://java-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1"
+            - name: CONCURRENCY_LEVELS
+              value: "2000, 3000, 4000, 5000"
+            - name: DURATION_SEC
+              value: "10"
+            - name: LABEL
+              value: "java-network"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }

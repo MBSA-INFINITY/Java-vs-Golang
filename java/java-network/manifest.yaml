@@ -1,0 +1,87 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-network
+  labels:
+    app: java-network
+    lang: java
+    workload: network
+    app.kubernetes.io/part-of: java-network
+    app.openshift.io/runtime: java
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-network
+  template:
+    metadata:
+      labels:
+        app: java-network
+        lang: java
+        workload: network
+        hydra.verint.com/owner: "mbsaiaditya"
+        hydra.verint.com/pci-compliant: "false"
+        hydra.verint.com/env: "dev"
+        hydra.verint.com/team: "mbsaiaditya"
+        hydra.verint.com/owning-vp: "jamie.williams"
+        hydra.verint.com/product-short-code: "edm"
+        hydra.verint.com/production: "false"
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: java-network
+          image: quay.hydra.verint.com/mbsaiaditya/java-network:v1
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 15
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-network
+  labels:
+    app: java-network
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  selector:
+    app: java-network
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http

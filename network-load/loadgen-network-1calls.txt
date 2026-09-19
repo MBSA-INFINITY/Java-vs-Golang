@@ -1,0 +1,75 @@
+2026-08-09T13:14:39.439043+00:00 [loadgen:go-network] target=http://go-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[1, 50, 200, 500, 1000, 2000, 5000] duration_per_level=20s
+2026-08-09T13:14:39.439283+00:00 [loadgen:go-network] --- testing concurrency=1 for 20s ---
+2026-08-09T13:14:59.469272+00:00 [loadgen:go-network] RESULT concurrency=1 rps=19.50 avg_ms=51.34 p50_ms=51.27 p90_ms=51.61 p99_ms=51.94 errors=0 error_rate=0.00%
+2026-08-09T13:14:59.469303+00:00 [loadgen:go-network] --- testing concurrency=50 for 20s ---
+2026-08-09T13:15:19.505928+00:00 [loadgen:go-network] RESULT concurrency=50 rps=967.10 avg_ms=51.75 p50_ms=51.50 p90_ms=52.82 p99_ms=55.90 errors=0 error_rate=0.00%
+2026-08-09T13:15:19.505959+00:00 [loadgen:go-network] --- testing concurrency=200 for 20s ---
+2026-08-09T13:15:39.590064+00:00 [loadgen:go-network] RESULT concurrency=200 rps=3794.50 avg_ms=52.78 p50_ms=51.61 p90_ms=55.51 p99_ms=64.56 errors=0 error_rate=0.00%
+2026-08-09T13:15:39.590119+00:00 [loadgen:go-network] --- testing concurrency=500 for 20s ---
+2026-08-09T13:15:59.735935+00:00 [loadgen:go-network] RESULT concurrency=500 rps=8109.85 avg_ms=61.69 p50_ms=59.04 p90_ms=74.81 p99_ms=98.12 errors=0 error_rate=0.00%
+2026-08-09T13:15:59.735972+00:00 [loadgen:go-network] --- testing concurrency=1000 for 20s ---
+2026-08-09T13:16:19.964567+00:00 [loadgen:go-network] RESULT concurrency=1000 rps=8097.05 avg_ms=123.83 p50_ms=119.75 p90_ms=150.42 p99_ms=184.42 errors=0 error_rate=0.00%
+2026-08-09T13:16:19.964599+00:00 [loadgen:go-network] --- testing concurrency=2000 for 20s ---
+2026-08-09T13:16:40.309389+00:00 [loadgen:go-network] RESULT concurrency=2000 rps=7140.90 avg_ms=281.86 p50_ms=267.38 p90_ms=352.34 p99_ms=487.16 errors=0 error_rate=0.00%
+2026-08-09T13:16:40.309433+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=0.00%, p99=487.16ms vs baseline=51.94ms) ***
+2026-08-09T13:16:40.309440+00:00 [loadgen:go-network] --- testing concurrency=5000 for 20s ---
+2026-08-09T13:17:01.198885+00:00 [loadgen:go-network] RESULT concurrency=5000 rps=5079.25 avg_ms=1005.32 p50_ms=980.70 p90_ms=1076.74 p99_ms=2200.25 errors=0 error_rate=0.00%
+2026-08-09T13:17:01.198922+00:00 [loadgen:go-network] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=0.00%, p99=2200.25ms vs baseline=51.94ms) ***
+2026-08-09T13:17:01.198947+00:00 [loadgen:go-network] === summary ===
+2026-08-09T13:17:01.198961+00:00 [loadgen:go-network] concurrency=     1 rps=    19.50 p50=   51.27ms p90=   51.61ms p99=   51.94ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.198969+00:00 [loadgen:go-network] concurrency=    50 rps=   967.10 p50=   51.50ms p90=   52.82ms p99=   55.90ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.198977+00:00 [loadgen:go-network] concurrency=   200 rps=  3794.50 p50=   51.61ms p90=   55.51ms p99=   64.56ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.198985+00:00 [loadgen:go-network] concurrency=   500 rps=  8109.85 p50=   59.04ms p90=   74.81ms p99=   98.12ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.198992+00:00 [loadgen:go-network] concurrency=  1000 rps=  8097.05 p50=  119.75ms p90=  150.42ms p99=  184.42ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.198999+00:00 [loadgen:go-network] concurrency=  2000 rps=  7140.90 p50=  267.38ms p90=  352.34ms p99=  487.16ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.199005+00:00 [loadgen:go-network] concurrency=  5000 rps=  5079.25 p50=  980.70ms p90= 1076.74ms p99= 2200.25ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:01.199009+00:00 [loadgen:go-network] results written to /tmp/results.csv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2026-08-09T13:14:57.922022+00:00 [loadgen:java-network] target=http://java-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[1, 50, 200, 500, 1000, 2000, 5000] duration_per_level=20s
+2026-08-09T13:14:57.922223+00:00 [loadgen:java-network] --- testing concurrency=1 for 20s ---
+2026-08-09T13:15:17.939354+00:00 [loadgen:java-network] RESULT concurrency=1 rps=18.80 avg_ms=53.22 p50_ms=53.09 p90_ms=53.64 p99_ms=55.45 errors=0 error_rate=0.00%
+2026-08-09T13:15:17.939405+00:00 [loadgen:java-network] --- testing concurrency=50 for 20s ---
+2026-08-09T13:15:37.991751+00:00 [loadgen:java-network] RESULT concurrency=50 rps=898.35 avg_ms=55.75 p50_ms=54.09 p90_ms=59.50 p99_ms=81.56 errors=0 error_rate=0.00%
+2026-08-09T13:15:37.991778+00:00 [loadgen:java-network] --- testing concurrency=200 for 20s ---
+2026-08-09T13:15:58.146087+00:00 [loadgen:java-network] RESULT concurrency=200 rps=2520.80 avg_ms=79.54 p50_ms=69.56 p90_ms=121.38 p99_ms=183.90 errors=0 error_rate=0.00%
+2026-08-09T13:15:58.146118+00:00 [loadgen:java-network] --- testing concurrency=500 for 20s ---
+2026-08-09T13:16:18.267078+00:00 [loadgen:java-network] RESULT concurrency=500 rps=2034.95 avg_ms=245.89 p50_ms=216.91 p90_ms=364.58 p99_ms=437.00 errors=0 error_rate=0.00%
+2026-08-09T13:16:18.267113+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=500 (error_rate=0.00%, p99=437.00ms vs baseline=55.45ms) ***
+2026-08-09T13:16:18.267118+00:00 [loadgen:java-network] --- testing concurrency=1000 for 20s ---
+2026-08-09T13:16:38.654720+00:00 [loadgen:java-network] RESULT concurrency=1000 rps=2695.50 avg_ms=375.18 p50_ms=336.46 p90_ms=591.83 p99_ms=840.50 errors=0 error_rate=0.00%
+2026-08-09T13:16:38.654755+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=1000 (error_rate=0.00%, p99=840.50ms vs baseline=55.45ms) ***
+2026-08-09T13:16:38.654761+00:00 [loadgen:java-network] --- testing concurrency=2000 for 20s ---
+2026-08-09T13:16:59.728303+00:00 [loadgen:java-network] RESULT concurrency=2000 rps=1816.45 avg_ms=1142.97 p50_ms=1162.72 p90_ms=1554.01 p99_ms=1903.00 errors=0 error_rate=0.00%
+2026-08-09T13:16:59.728339+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=0.00%, p99=1903.00ms vs baseline=55.45ms) ***
+2026-08-09T13:16:59.728345+00:00 [loadgen:java-network] --- testing concurrency=5000 for 20s ---
+2026-08-09T13:17:21.043465+00:00 [loadgen:java-network] RESULT concurrency=5000 rps=1304.45 avg_ms=3901.11 p50_ms=1834.45 p90_ms=10313.44 p99_ms=10647.53 errors=26089 error_rate=100.00%
+2026-08-09T13:17:21.043497+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=100.00%, p99=10647.53ms vs baseline=55.45ms) ***
+2026-08-09T13:17:21.043520+00:00 [loadgen:java-network] === summary ===
+2026-08-09T13:17:21.043532+00:00 [loadgen:java-network] concurrency=     1 rps=    18.80 p50=   53.09ms p90=   53.64ms p99=   55.45ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043538+00:00 [loadgen:java-network] concurrency=    50 rps=   898.35 p50=   54.09ms p90=   59.50ms p99=   81.56ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043544+00:00 [loadgen:java-network] concurrency=   200 rps=  2520.80 p50=   69.56ms p90=  121.38ms p99=  183.90ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043550+00:00 [loadgen:java-network] concurrency=   500 rps=  2034.95 p50=  216.91ms p90=  364.58ms p99=  437.00ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043555+00:00 [loadgen:java-network] concurrency=  1000 rps=  2695.50 p50=  336.46ms p90=  591.83ms p99=  840.50ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043560+00:00 [loadgen:java-network] concurrency=  2000 rps=  1816.45 p50= 1162.72ms p90= 1554.01ms p99= 1903.00ms errors=     0 error_rate=0.00%
+2026-08-09T13:17:21.043566+00:00 [loadgen:java-network] concurrency=  5000 rps=  1304.45 p50= 1834.45ms p90=10313.44ms p99=10647.53ms errors= 26089 error_rate=100.00%
+2026-08-09T13:17:21.043569+00:00 [loadgen:java-network] results written to /tmp/results.csv

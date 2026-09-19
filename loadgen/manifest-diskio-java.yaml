@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-java-diskio
+  labels:
+    app: loadgen
+    target: java-diskio
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app: loadgen
+        target: java-diskio
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: loadgen
+          image: <image_registry>/mbsaiaditya/loadgen:v1
+          env:
+            - name: TARGET_URL
+              value: "http://java-diskio.test-iam-mbsa.svc.cluster.local:8080/diskio?records=1000&workers=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1000, 1200, 1500, 1700, 2000"
+            - name: DURATION_SEC
+              value: "10"
+            - name: LABEL
+              value: "java-diskio"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }

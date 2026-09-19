@@ -1,0 +1,147 @@
+2026-08-25T21:19:27.393380+00:00 [loadgen:go-diskio] target=http://go-diskio.test-iam-mbsa.svc.cluster.local:8080/diskio?records=1000&workers=1 levels=[1, 50, 200, 500, 1000, 2000, 5000] duration_per_level=20s
+2026-08-25T21:19:27.393652+00:00 [loadgen:go-diskio] --- testing concurrency=1 for 20s ---
+2026-08-25T21:19:47.399199+00:00 [loadgen:go-diskio] RESULT concurrency=1 rps=167.00 avg_ms=5.98 p50_ms=6.04 p90_ms=6.76 p99_ms=8.10 errors=0 error_rate=0.00%
+2026-08-25T21:19:47.399231+00:00 [loadgen:go-diskio] --- testing concurrency=50 for 20s ---
+2026-08-25T21:20:07.577324+00:00 [loadgen:go-diskio] RESULT concurrency=50 rps=208.90 avg_ms=240.43 p50_ms=131.30 p90_ms=247.02 p99_ms=3974.77 errors=0 error_rate=0.00%
+2026-08-25T21:20:07.577355+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=50 (error_rate=0.00%, p99=3974.77ms vs baseline=8.10ms) ***
+2026-08-25T21:20:07.577360+00:00 [loadgen:go-diskio] --- testing concurrency=200 for 20s ---
+2026-08-25T21:20:28.646056+00:00 [loadgen:go-diskio] RESULT concurrency=200 rps=3148.60 avg_ms=65.16 p50_ms=15.55 p90_ms=54.43 p99_ms=772.60 errors=58905 error_rate=93.54%
+2026-08-25T21:20:28.646093+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=200 (error_rate=93.54%, p99=772.60ms vs baseline=8.10ms) ***
+2026-08-25T21:20:28.646098+00:00 [loadgen:go-diskio] --- testing concurrency=500 for 20s ---
+2026-08-25T21:20:51.311264+00:00 [loadgen:go-diskio] RESULT concurrency=500 rps=660.55 avg_ms=806.71 p50_ms=80.28 p90_ms=2132.03 p99_ms=10298.37 errors=9047 error_rate=68.48%
+2026-08-25T21:20:51.311299+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=500 (error_rate=68.48%, p99=10298.37ms vs baseline=8.10ms) ***
+2026-08-25T21:20:51.311304+00:00 [loadgen:go-diskio] --- testing concurrency=1000 for 20s ---
+2026-08-25T21:21:15.871690+00:00 [loadgen:go-diskio] RESULT concurrency=1000 rps=955.90 avg_ms=1165.17 p50_ms=298.28 p90_ms=1298.13 p99_ms=10532.52 errors=14644 error_rate=76.60%
+2026-08-25T21:21:15.871726+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=1000 (error_rate=76.60%, p99=10532.52ms vs baseline=8.10ms) ***
+2026-08-25T21:21:15.871732+00:00 [loadgen:go-diskio] --- testing concurrency=2000 for 20s ---
+2026-08-25T21:21:45.871087+00:00 [loadgen:go-diskio] RESULT concurrency=2000 rps=427.40 avg_ms=5614.72 p50_ms=6825.45 p90_ms=10903.39 p99_ms=11011.45 errors=3843 error_rate=44.96%
+2026-08-25T21:21:45.871122+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=44.96%, p99=11011.45ms vs baseline=8.10ms) ***
+2026-08-25T21:21:45.871128+00:00 [loadgen:go-diskio] --- testing concurrency=5000 for 20s ---
+2026-08-25T21:22:15.874211+00:00 [loadgen:go-diskio] RESULT concurrency=5000 rps=947.45 avg_ms=5750.17 p50_ms=8095.84 p90_ms=11051.80 p99_ms=11221.25 errors=15874 error_rate=83.77%
+2026-08-25T21:22:15.874251+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=83.77%, p99=11221.25ms vs baseline=8.10ms) ***
+2026-08-25T21:22:15.874273+00:00 [loadgen:go-diskio] === summary ===
+2026-08-25T21:22:15.874287+00:00 [loadgen:go-diskio] concurrency=     1 rps=   167.00 p50=    6.04ms p90=    6.76ms p99=    8.10ms errors=     0 error_rate=0.00%
+2026-08-25T21:22:15.874295+00:00 [loadgen:go-diskio] concurrency=    50 rps=   208.90 p50=  131.30ms p90=  247.02ms p99= 3974.77ms errors=     0 error_rate=0.00%
+2026-08-25T21:22:15.874302+00:00 [loadgen:go-diskio] concurrency=   200 rps=  3148.60 p50=   15.55ms p90=   54.43ms p99=  772.60ms errors= 58905 error_rate=93.54%
+2026-08-25T21:22:15.874309+00:00 [loadgen:go-diskio] concurrency=   500 rps=   660.55 p50=   80.28ms p90= 2132.03ms p99=10298.37ms errors=  9047 error_rate=68.48%
+2026-08-25T21:22:15.874316+00:00 [loadgen:go-diskio] concurrency=  1000 rps=   955.90 p50=  298.28ms p90= 1298.13ms p99=10532.52ms errors= 14644 error_rate=76.60%
+2026-08-25T21:22:15.874322+00:00 [loadgen:go-diskio] concurrency=  2000 rps=   427.40 p50= 6825.45ms p90=10903.39ms p99=11011.45ms errors=  3843 error_rate=44.96%
+2026-08-25T21:22:15.874327+00:00 [loadgen:go-diskio] concurrency=  5000 rps=   947.45 p50= 8095.84ms p90=11051.80ms p99=11221.25ms errors= 15874 error_rate=83.77%
+2026-08-25T21:22:15.874331+00:00 [loadgen:go-diskio] results written to /tmp/results.csv
+
+
+
+
+
+
+
+
+2026-08-25T21:20:40.240327+00:00 [loadgen:java-diskio] target=http://java-diskio.test-iam-mbsa.svc.cluster.local:8080/diskio?records=1000&workers=1 levels=[1, 50, 200, 500, 1000, 2000, 5000] duration_per_level=20s
+2026-08-25T21:20:40.241310+00:00 [loadgen:java-diskio] --- testing concurrency=1 for 20s ---
+2026-08-25T21:21:00.244105+00:00 [loadgen:java-diskio] RESULT concurrency=1 rps=173.40 avg_ms=5.76 p50_ms=5.45 p90_ms=6.49 p99_ms=9.71 errors=0 error_rate=0.00%
+2026-08-25T21:21:00.244136+00:00 [loadgen:java-diskio] --- testing concurrency=50 for 20s ---
+2026-08-25T21:21:20.385070+00:00 [loadgen:java-diskio] RESULT concurrency=50 rps=362.60 avg_ms=138.31 p50_ms=116.39 p90_ms=215.55 p99_ms=297.99 errors=0 error_rate=0.00%
+2026-08-25T21:21:20.385101+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=50 (error_rate=0.00%, p99=297.99ms vs baseline=9.71ms) ***
+2026-08-25T21:21:20.385106+00:00 [loadgen:java-diskio] --- testing concurrency=200 for 20s ---
+2026-08-25T21:21:40.905498+00:00 [loadgen:java-diskio] RESULT concurrency=200 rps=335.45 avg_ms=604.61 p50_ms=528.82 p90_ms=995.83 p99_ms=1699.36 errors=0 error_rate=0.00%
+2026-08-25T21:21:40.905533+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=200 (error_rate=0.00%, p99=1699.36ms vs baseline=9.71ms) ***
+2026-08-25T21:21:40.905538+00:00 [loadgen:java-diskio] --- testing concurrency=500 for 20s ---
+2026-08-25T21:22:02.203155+00:00 [loadgen:java-diskio] RESULT concurrency=500 rps=424.45 avg_ms=1217.19 p50_ms=1026.69 p90_ms=2282.40 p99_ms=3587.78 errors=0 error_rate=0.00%
+2026-08-25T21:22:02.203192+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=500 (error_rate=0.00%, p99=3587.78ms vs baseline=9.71ms) ***
+2026-08-25T21:22:02.203199+00:00 [loadgen:java-diskio] --- testing concurrency=1000 for 20s ---
+2026-08-25T21:22:24.317209+00:00 [loadgen:java-diskio] RESULT concurrency=1000 rps=493.85 avg_ms=2138.13 p50_ms=1815.48 p90_ms=3916.92 p99_ms=6483.94 errors=0 error_rate=0.00%
+2026-08-25T21:22:24.317242+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=1000 (error_rate=0.00%, p99=6483.94ms vs baseline=9.71ms) ***
+2026-08-25T21:22:24.317247+00:00 [loadgen:java-diskio] --- testing concurrency=2000 for 20s ---
+2026-08-25T21:22:48.583552+00:00 [loadgen:java-diskio] RESULT concurrency=2000 rps=584.60 avg_ms=3796.13 p50_ms=3437.98 p90_ms=6793.52 p99_ms=10392.30 errors=194 error_rate=1.66%
+2026-08-25T21:22:48.583587+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=1.66%, p99=10392.30ms vs baseline=9.71ms) ***
+2026-08-25T21:22:48.583593+00:00 [loadgen:java-diskio] --- testing concurrency=5000 for 20s ---
+2026-08-25T21:23:08.914065+00:00 [loadgen:java-diskio] RESULT concurrency=5000 rps=1245.70 avg_ms=4024.45 p50_ms=2579.67 p90_ms=10911.07 p99_ms=13108.78 errors=24037 error_rate=96.48%
+2026-08-25T21:23:08.914117+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=96.48%, p99=13108.78ms vs baseline=9.71ms) ***
+2026-08-25T21:23:08.914147+00:00 [loadgen:java-diskio] === summary ===
+2026-08-25T21:23:08.914168+00:00 [loadgen:java-diskio] concurrency=     1 rps=   173.40 p50=    5.45ms p90=    6.49ms p99=    9.71ms errors=     0 error_rate=0.00%
+2026-08-25T21:23:08.914179+00:00 [loadgen:java-diskio] concurrency=    50 rps=   362.60 p50=  116.39ms p90=  215.55ms p99=  297.99ms errors=     0 error_rate=0.00%
+2026-08-25T21:23:08.914188+00:00 [loadgen:java-diskio] concurrency=   200 rps=   335.45 p50=  528.82ms p90=  995.83ms p99= 1699.36ms errors=     0 error_rate=0.00%
+2026-08-25T21:23:08.914198+00:00 [loadgen:java-diskio] concurrency=   500 rps=   424.45 p50= 1026.69ms p90= 2282.40ms p99= 3587.78ms errors=     0 error_rate=0.00%
+2026-08-25T21:23:08.914208+00:00 [loadgen:java-diskio] concurrency=  1000 rps=   493.85 p50= 1815.48ms p90= 3916.92ms p99= 6483.94ms errors=     0 error_rate=0.00%
+2026-08-25T21:23:08.914217+00:00 [loadgen:java-diskio] concurrency=  2000 rps=   584.60 p50= 3437.98ms p90= 6793.52ms p99=10392.30ms errors=   194 error_rate=1.66%
+2026-08-25T21:23:08.914225+00:00 [loadgen:java-diskio] concurrency=  5000 rps=  1245.70 p50= 2579.67ms p90=10911.07ms p99=13108.78ms errors= 24037 error_rate=96.48%
+2026-08-25T21:23:08.914230+00:00 [loadgen:java-diskio] results written to /tmp/results.csv
+
+
+
+
+
+
+
+2026-08-25T21:41:09.637121+00:00 [loadgen:go-diskio] target=http://go-diskio.test-iam-mbsa.svc.cluster.local:8080/diskio?records=1000&workers=1 levels=[1, 5, 10, 20, 50, 100, 200] duration_per_level=20s
+2026-08-25T21:41:09.637990+00:00 [loadgen:go-diskio] --- testing concurrency=1 for 20s ---
+2026-08-25T21:41:29.641564+00:00 [loadgen:go-diskio] RESULT concurrency=1 rps=163.90 avg_ms=6.09 p50_ms=6.09 p90_ms=7.08 p99_ms=8.39 errors=0 error_rate=0.00%
+2026-08-25T21:41:29.641595+00:00 [loadgen:go-diskio] --- testing concurrency=5 for 20s ---
+2026-08-25T21:41:49.667518+00:00 [loadgen:go-diskio] RESULT concurrency=5 rps=200.15 avg_ms=24.99 p50_ms=22.93 p90_ms=26.98 p99_ms=37.76 errors=0 error_rate=0.00%
+2026-08-25T21:41:49.667564+00:00 [loadgen:go-diskio] --- testing concurrency=10 for 20s ---
+2026-08-25T21:42:09.715957+00:00 [loadgen:go-diskio] RESULT concurrency=10 rps=198.30 avg_ms=50.48 p50_ms=35.97 p90_ms=47.95 p99_ms=921.56 errors=0 error_rate=0.00%
+2026-08-25T21:42:09.715986+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=10 (error_rate=0.00%, p99=921.56ms vs baseline=8.39ms) ***
+2026-08-25T21:42:09.715990+00:00 [loadgen:go-diskio] --- testing concurrency=20 for 20s ---
+2026-08-25T21:42:29.829762+00:00 [loadgen:go-diskio] RESULT concurrency=20 rps=203.10 avg_ms=98.76 p50_ms=85.46 p90_ms=102.78 p99_ms=631.92 errors=0 error_rate=0.00%
+2026-08-25T21:42:29.829799+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=20 (error_rate=0.00%, p99=631.92ms vs baseline=8.39ms) ***
+2026-08-25T21:42:29.829806+00:00 [loadgen:go-diskio] --- testing concurrency=50 for 20s ---
+2026-08-25T21:42:50.083486+00:00 [loadgen:go-diskio] RESULT concurrency=50 rps=200.10 avg_ms=251.48 p50_ms=127.50 p90_ms=233.63 p99_ms=4742.94 errors=0 error_rate=0.00%
+2026-08-25T21:42:50.083516+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=50 (error_rate=0.00%, p99=4742.94ms vs baseline=8.39ms) ***
+2026-08-25T21:42:50.083520+00:00 [loadgen:go-diskio] --- testing concurrency=100 for 20s ---
+2026-08-25T21:43:10.541484+00:00 [loadgen:go-diskio] RESULT concurrency=100 rps=1189.55 avg_ms=85.10 p50_ms=11.47 p90_ms=260.18 p99_ms=431.58 errors=20479 error_rate=86.08%
+2026-08-25T21:43:10.541515+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=100 (error_rate=86.08%, p99=431.58ms vs baseline=8.39ms) ***
+2026-08-25T21:43:10.541520+00:00 [loadgen:go-diskio] --- testing concurrency=200 for 20s ---
+2026-08-25T21:43:31.281478+00:00 [loadgen:go-diskio] RESULT concurrency=200 rps=1449.55 avg_ms=140.03 p50_ms=22.67 p90_ms=69.35 p99_ms=3637.31 errors=25636 error_rate=88.43%
+2026-08-25T21:43:31.281508+00:00 [loadgen:go-diskio] *** DEGRADATION DETECTED at concurrency=200 (error_rate=88.43%, p99=3637.31ms vs baseline=8.39ms) ***
+2026-08-25T21:43:31.281528+00:00 [loadgen:go-diskio] === summary ===
+2026-08-25T21:43:31.281540+00:00 [loadgen:go-diskio] concurrency=     1 rps=   163.90 p50=    6.09ms p90=    7.08ms p99=    8.39ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:31.281546+00:00 [loadgen:go-diskio] concurrency=     5 rps=   200.15 p50=   22.93ms p90=   26.98ms p99=   37.76ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:31.281552+00:00 [loadgen:go-diskio] concurrency=    10 rps=   198.30 p50=   35.97ms p90=   47.95ms p99=  921.56ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:31.281557+00:00 [loadgen:go-diskio] concurrency=    20 rps=   203.10 p50=   85.46ms p90=  102.78ms p99=  631.92ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:31.281562+00:00 [loadgen:go-diskio] concurrency=    50 rps=   200.10 p50=  127.50ms p90=  233.63ms p99= 4742.94ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:31.281568+00:00 [loadgen:go-diskio] concurrency=   100 rps=  1189.55 p50=   11.47ms p90=  260.18ms p99=  431.58ms errors= 20479 error_rate=86.08%
+2026-08-25T21:43:31.281573+00:00 [loadgen:go-diskio] concurrency=   200 rps=  1449.55 p50=   22.67ms p90=   69.35ms p99= 3637.31ms errors= 25636 error_rate=88.43%
+2026-08-25T21:43:31.281576+00:00 [loadgen:go-diskio] results written to /tmp/results.csv
+
+
+
+2026-08-25T21:41:16.035596+00:00 [loadgen:java-diskio] target=http://java-diskio.test-iam-mbsa.svc.cluster.local:8080/diskio?records=1000&workers=1 levels=[1, 5, 10, 20, 50, 100, 200] duration_per_level=20s
+2026-08-25T21:41:16.035848+00:00 [loadgen:java-diskio] --- testing concurrency=1 for 20s ---
+2026-08-25T21:41:36.044945+00:00 [loadgen:java-diskio] RESULT concurrency=1 rps=156.40 avg_ms=6.39 p50_ms=5.69 p90_ms=7.00 p99_ms=24.15 errors=0 error_rate=0.00%
+2026-08-25T21:41:36.045187+00:00 [loadgen:java-diskio] --- testing concurrency=5 for 20s ---
+2026-08-25T21:41:56.054999+00:00 [loadgen:java-diskio] RESULT concurrency=5 rps=568.25 avg_ms=8.79 p50_ms=5.88 p90_ms=20.28 p99_ms=39.08 errors=0 error_rate=0.00%
+2026-08-25T21:41:56.055030+00:00 [loadgen:java-diskio] --- testing concurrency=10 for 20s ---
+2026-08-25T21:42:16.073802+00:00 [loadgen:java-diskio] RESULT concurrency=10 rps=663.20 avg_ms=15.08 p50_ms=7.46 p90_ms=39.03 p99_ms=49.06 errors=0 error_rate=0.00%
+2026-08-25T21:42:16.073849+00:00 [loadgen:java-diskio] --- testing concurrency=20 for 20s ---
+2026-08-25T21:42:36.112977+00:00 [loadgen:java-diskio] RESULT concurrency=20 rps=511.05 avg_ms=39.19 p50_ms=41.11 p90_ms=81.83 p99_ms=122.59 errors=0 error_rate=0.00%
+2026-08-25T21:42:36.113014+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=20 (error_rate=0.00%, p99=122.59ms vs baseline=24.15ms) ***
+2026-08-25T21:42:36.113019+00:00 [loadgen:java-diskio] --- testing concurrency=50 for 20s ---
+2026-08-25T21:42:56.214338+00:00 [loadgen:java-diskio] RESULT concurrency=50 rps=354.65 avg_ms=141.41 p50_ms=140.92 p90_ms=215.06 p99_ms=291.98 errors=0 error_rate=0.00%
+2026-08-25T21:42:56.214367+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=50 (error_rate=0.00%, p99=291.98ms vs baseline=24.15ms) ***
+2026-08-25T21:42:56.214371+00:00 [loadgen:java-diskio] --- testing concurrency=100 for 20s ---
+2026-08-25T21:43:16.446669+00:00 [loadgen:java-diskio] RESULT concurrency=100 rps=343.90 avg_ms=292.46 p50_ms=293.41 p90_ms=443.05 p99_ms=625.38 errors=0 error_rate=0.00%
+2026-08-25T21:43:16.446708+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=100 (error_rate=0.00%, p99=625.38ms vs baseline=24.15ms) ***
+2026-08-25T21:43:16.446714+00:00 [loadgen:java-diskio] --- testing concurrency=200 for 20s ---
+2026-08-25T21:43:36.912764+00:00 [loadgen:java-diskio] RESULT concurrency=200 rps=370.20 avg_ms=547.62 p50_ms=494.64 p90_ms=908.25 p99_ms=1557.61 errors=0 error_rate=0.00%
+2026-08-25T21:43:36.912793+00:00 [loadgen:java-diskio] *** DEGRADATION DETECTED at concurrency=200 (error_rate=0.00%, p99=1557.61ms vs baseline=24.15ms) ***
+2026-08-25T21:43:36.912811+00:00 [loadgen:java-diskio] === summary ===
+2026-08-25T21:43:36.912822+00:00 [loadgen:java-diskio] concurrency=     1 rps=   156.40 p50=    5.69ms p90=    7.00ms p99=   24.15ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912828+00:00 [loadgen:java-diskio] concurrency=     5 rps=   568.25 p50=    5.88ms p90=   20.28ms p99=   39.08ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912834+00:00 [loadgen:java-diskio] concurrency=    10 rps=   663.20 p50=    7.46ms p90=   39.03ms p99=   49.06ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912839+00:00 [loadgen:java-diskio] concurrency=    20 rps=   511.05 p50=   41.11ms p90=   81.83ms p99=  122.59ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912845+00:00 [loadgen:java-diskio] concurrency=    50 rps=   354.65 p50=  140.92ms p90=  215.06ms p99=  291.98ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912850+00:00 [loadgen:java-diskio] concurrency=   100 rps=   343.90 p50=  293.41ms p90=  443.05ms p99=  625.38ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912855+00:00 [loadgen:java-diskio] concurrency=   200 rps=   370.20 p50=  494.64ms p90=  908.25ms p99= 1557.61ms errors=     0 error_rate=0.00%
+2026-08-25T21:43:36.912858+00:00 [loadgen:java-diskio] results written to /tmp/results.csv
+
+
+
+
+
+
+
+
+
+
+
+

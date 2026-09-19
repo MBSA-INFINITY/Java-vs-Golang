@@ -1,0 +1,62 @@
+2026-08-27T04:09:13.732867+00:00 [loadgen:java-network] target=http://java-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[1, 5, 10, 20, 50, 100, 200, 500, 1000, 2000, 5000] duration_per_level=10s
+2026-08-27T04:09:13.733082+00:00 [loadgen:java-network] --- testing concurrency=1 for 10s ---
+2026-08-27T04:09:23.741776+00:00 [loadgen:java-network] RESULT concurrency=1 rps=17.50 avg_ms=57.17 p50_ms=56.49 p90_ms=57.50 p99_ms=63.87 errors=0 error_rate=0.00%
+2026-08-27T04:09:23.741831+00:00 [loadgen:java-network] --- testing concurrency=5 for 10s ---
+2026-08-27T04:09:33.777477+00:00 [loadgen:java-network] RESULT concurrency=5 rps=89.00 avg_ms=56.37 p50_ms=55.94 p90_ms=58.65 p99_ms=64.56 errors=0 error_rate=0.00%
+2026-08-27T04:09:33.777505+00:00 [loadgen:java-network] --- testing concurrency=10 for 10s ---
+2026-08-27T04:09:43.808291+00:00 [loadgen:java-network] RESULT concurrency=10 rps=184.00 avg_ms=54.50 p50_ms=54.32 p90_ms=55.61 p99_ms=59.61 errors=0 error_rate=0.00%
+2026-08-27T04:09:43.808317+00:00 [loadgen:java-network] --- testing concurrency=20 for 10s ---
+2026-08-27T04:09:53.815017+00:00 [loadgen:java-network] RESULT concurrency=20 rps=365.10 avg_ms=54.79 p50_ms=53.79 p90_ms=56.49 p99_ms=72.53 errors=0 error_rate=0.00%
+2026-08-27T04:09:53.815044+00:00 [loadgen:java-network] --- testing concurrency=50 for 10s ---
+2026-08-27T04:10:03.852682+00:00 [loadgen:java-network] RESULT concurrency=50 rps=909.70 avg_ms=55.09 p50_ms=53.21 p90_ms=59.14 p99_ms=84.74 errors=0 error_rate=0.00%
+2026-08-27T04:10:03.852713+00:00 [loadgen:java-network] --- testing concurrency=100 for 10s ---
+2026-08-27T04:10:13.895321+00:00 [loadgen:java-network] RESULT concurrency=100 rps=1664.50 avg_ms=60.17 p50_ms=57.67 p90_ms=67.61 p99_ms=130.57 errors=0 error_rate=0.00%
+2026-08-27T04:10:13.895351+00:00 [loadgen:java-network] --- testing concurrency=200 for 10s ---
+2026-08-27T04:10:24.070729+00:00 [loadgen:java-network] RESULT concurrency=200 rps=2487.60 avg_ms=81.16 p50_ms=66.91 p90_ms=137.72 p99_ms=215.25 errors=0 error_rate=0.00%
+2026-08-27T04:10:24.070771+00:00 [loadgen:java-network] --- testing concurrency=500 for 10s ---
+2026-08-27T04:10:34.375081+00:00 [loadgen:java-network] RESULT concurrency=500 rps=2130.50 avg_ms=240.36 p50_ms=232.32 p90_ms=345.87 p99_ms=471.29 errors=0 error_rate=0.00%
+2026-08-27T04:10:34.375114+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=500 (error_rate=0.00%, p99=471.29ms vs baseline=63.87ms) ***
+2026-08-27T04:10:34.375120+00:00 [loadgen:java-network] --- testing concurrency=1000 for 10s ---
+2026-08-27T04:10:44.653860+00:00 [loadgen:java-network] RESULT concurrency=1000 rps=2314.80 avg_ms=438.47 p50_ms=428.21 p90_ms=662.11 p99_ms=894.70 errors=0 error_rate=0.00%
+2026-08-27T04:10:44.653895+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=1000 (error_rate=0.00%, p99=894.70ms vs baseline=63.87ms) ***
+2026-08-27T04:10:44.653901+00:00 [loadgen:java-network] --- testing concurrency=2000 for 10s ---
+2026-08-27T04:10:55.890461+00:00 [loadgen:java-network] RESULT concurrency=2000 rps=1659.80 avg_ms=1302.93 p50_ms=1273.82 p90_ms=1721.72 p99_ms=1959.56 errors=0 error_rate=0.00%
+2026-08-27T04:10:55.890494+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=2000 (error_rate=0.00%, p99=1959.56ms vs baseline=63.87ms) ***
+2026-08-27T04:10:55.890500+00:00 [loadgen:java-network] --- testing concurrency=5000 for 10s ---
+2026-08-27T04:11:07.093908+00:00 [loadgen:java-network] RESULT concurrency=5000 rps=500.00 avg_ms=10949.02 p50_ms=10956.84 p90_ms=11077.62 p99_ms=11098.96 errors=5000 error_rate=100.00%
+2026-08-27T04:11:07.093941+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=100.00%, p99=11098.96ms vs baseline=63.87ms) ***
+2026-08-27T04:11:07.093962+00:00 [loadgen:java-network] === summary ===
+2026-08-27T04:11:07.093975+00:00 [loadgen:java-network] concurrency=     1 rps=    17.50 p50=   56.49ms p90=   57.50ms p99=   63.87ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.093984+00:00 [loadgen:java-network] concurrency=     5 rps=    89.00 p50=   55.94ms p90=   58.65ms p99=   64.56ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.093990+00:00 [loadgen:java-network] concurrency=    10 rps=   184.00 p50=   54.32ms p90=   55.61ms p99=   59.61ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.093995+00:00 [loadgen:java-network] concurrency=    20 rps=   365.10 p50=   53.79ms p90=   56.49ms p99=   72.53ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094001+00:00 [loadgen:java-network] concurrency=    50 rps=   909.70 p50=   53.21ms p90=   59.14ms p99=   84.74ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094006+00:00 [loadgen:java-network] concurrency=   100 rps=  1664.50 p50=   57.67ms p90=   67.61ms p99=  130.57ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094011+00:00 [loadgen:java-network] concurrency=   200 rps=  2487.60 p50=   66.91ms p90=  137.72ms p99=  215.25ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094017+00:00 [loadgen:java-network] concurrency=   500 rps=  2130.50 p50=  232.32ms p90=  345.87ms p99=  471.29ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094022+00:00 [loadgen:java-network] concurrency=  1000 rps=  2314.80 p50=  428.21ms p90=  662.11ms p99=  894.70ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094027+00:00 [loadgen:java-network] concurrency=  2000 rps=  1659.80 p50= 1273.82ms p90= 1721.72ms p99= 1959.56ms errors=     0 error_rate=0.00%
+2026-08-27T04:11:07.094032+00:00 [loadgen:java-network] concurrency=  5000 rps=   500.00 p50=10956.84ms p90=11077.62ms p99=11098.96ms errors=  5000 error_rate=100.00%
+2026-08-27T04:11:07.094036+00:00 [loadgen:java-network] results written to /tmp/results.csv
+
+
+
+Failed Concurrency [2000, 5000]
+
+2026-09-06T15:39:47.550873+00:00 [loadgen:java-network] target=http://java-network.test-iam-mbsa.svc.cluster.local:8080/io?delayMs=50&calls=1 levels=[2000, 3000, 4000, 5000] duration_per_level=10s
+2026-09-06T15:39:47.551101+00:00 [loadgen:java-network] --- testing concurrency=2000 for 10s ---
+2026-09-06T15:39:58.713024+00:00 [loadgen:java-network] RESULT concurrency=2000 rps=485.30 avg_ms=4332.76 p50_ms=4210.44 p90_ms=7406.97 p99_ms=9016.96 errors=0 error_rate=0.00%
+2026-09-06T15:39:58.713056+00:00 [loadgen:java-network] --- testing concurrency=3000 for 10s ---
+2026-09-06T15:40:12.792198+00:00 [loadgen:java-network] RESULT concurrency=3000 rps=615.80 avg_ms=6043.41 p50_ms=5790.37 p90_ms=8793.69 p99_ms=10962.21 errors=157 error_rate=2.55%
+2026-09-06T15:40:12.792230+00:00 [loadgen:java-network] --- testing concurrency=4000 for 10s ---
+2026-09-06T15:40:24.748165+00:00 [loadgen:java-network] RESULT concurrency=4000 rps=406.90 avg_ms=10761.52 p50_ms=10940.71 p90_ms=11013.03 p99_ms=11044.92 errors=4000 error_rate=98.30%
+2026-09-06T15:40:24.748197+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=4000 (error_rate=98.30%, p99=11044.92ms vs baseline=9016.96ms) ***
+2026-09-06T15:40:24.748202+00:00 [loadgen:java-network] --- testing concurrency=5000 for 10s ---
+2026-09-06T15:40:35.755021+00:00 [loadgen:java-network] RESULT concurrency=5000 rps=2422.30 avg_ms=2077.53 p50_ms=1948.04 p90_ms=3423.48 p99_ms=5154.99 errors=24223 error_rate=100.00%
+2026-09-06T15:40:35.755054+00:00 [loadgen:java-network] *** DEGRADATION DETECTED at concurrency=5000 (error_rate=100.00%, p99=5154.99ms vs baseline=9016.96ms) ***
+2026-09-06T15:40:35.755075+00:00 [loadgen:java-network] === summary ===
+2026-09-06T15:40:35.755088+00:00 [loadgen:java-network] concurrency=  2000 rps=   485.30 p50= 4210.44ms p90= 7406.97ms p99= 9016.96ms errors=     0 error_rate=0.00%
+2026-09-06T15:40:35.755096+00:00 [loadgen:java-network] concurrency=  3000 rps=   615.80 p50= 5790.37ms p90= 8793.69ms p99=10962.21ms errors=   157 error_rate=2.55%
+2026-09-06T15:40:35.755102+00:00 [loadgen:java-network] concurrency=  4000 rps=   406.90 p50=10940.71ms p90=11013.03ms p99=11044.92ms errors=  4000 error_rate=98.30%
+2026-09-06T15:40:35.755107+00:00 [loadgen:java-network] concurrency=  5000 rps=  2422.30 p50= 1948.04ms p90= 3423.48ms p99= 5154.99ms errors= 24223 error_rate=100.00%
+2026-09-06T15:40:35.755111+00:00 [loadgen:java-network] results written to /tmp/results.csv

@@ -1,0 +1,431 @@
+# =============================================================================
+# manifest.yaml - Java (Spring Boot, virtual threads) vs Go (goroutines)
+# CPU-bound vs IO-bound benchmark stack.
+#
+# Contains:
+#   - Namespace: bench
+#   - Deployments + Services for: go-compute, go-network, java-compute, java-network
+#     (identical cpu/memory requests+limits across languages for a fair comparison)
+#   - Load-generator Jobs (one per target), created in a *suspended* state so they
+#     don't fire the instant you apply this file. Resume one at a time - see README.md.
+#
+# BEFORE APPLYING: replace every "<REGISTRY>" placeholder below with your image
+# registry/repo prefix (e.g. docker.io/youruser, ghcr.io/youruser, myacr.azurecr.io).
+# =============================================================================
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bench
+
+---
+# -----------------------------------------------------------------------------
+# go-compute
+# -----------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-compute
+  namespace: bench
+  labels:
+    app: go-compute
+    lang: go
+    workload: compute
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-compute
+  template:
+    metadata:
+      labels:
+        app: go-compute
+        lang: go
+        workload: compute
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: go-compute
+          image: <REGISTRY>/go-compute:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: GOMAXPROCS
+              value: "1"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-compute
+  namespace: bench
+  labels:
+    app: go-compute
+spec:
+  selector:
+    app: go-compute
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+
+---
+# -----------------------------------------------------------------------------
+# go-network
+# -----------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-network
+  namespace: bench
+  labels:
+    app: go-network
+    lang: go
+    workload: network
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-network
+  template:
+    metadata:
+      labels:
+        app: go-network
+        lang: go
+        workload: network
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
+    spec:
+      containers:
+        - name: go-network
+          image: <REGISTRY>/go-network:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: GOMAXPROCS
+              value: "1"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-network
+  namespace: bench
+  labels:
+    app: go-network
+spec:
+  selector:
+    app: go-network
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+
+---
+# -----------------------------------------------------------------------------
+# java-compute
+# -----------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-compute
+  namespace: bench
+  labels:
+    app: java-compute
+    lang: java
+    workload: compute
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-compute
+  template:
+    metadata:
+      labels:
+        app: java-compute
+        lang: java
+        workload: compute
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      containers:
+        - name: java-compute
+          image: <REGISTRY>/java-compute:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 15
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-compute
+  namespace: bench
+  labels:
+    app: java-compute
+spec:
+  selector:
+    app: java-compute
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+
+---
+# -----------------------------------------------------------------------------
+# java-network
+# -----------------------------------------------------------------------------
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: java-network
+  namespace: bench
+  labels:
+    app: java-network
+    lang: java
+    workload: network
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: java-network
+  template:
+    metadata:
+      labels:
+        app: java-network
+        lang: java
+        workload: network
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/actuator/prometheus"
+    spec:
+      containers:
+        - name: java-network
+          image: <REGISTRY>/java-network:latest
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: SERVER_PORT
+              value: "8080"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 15
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: java-network
+  namespace: bench
+  labels:
+    app: java-network
+spec:
+  selector:
+    app: java-network
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+
+---
+# =============================================================================
+# Load generator Jobs - one per target, created SUSPENDED (spec.suspend: true).
+# Resume a single one at a time so results aren't skewed by concurrent tests:
+#   kubectl -n bench patch job loadgen-go-compute -p "{\"spec\":{\"suspend\":false}}"
+# Re-run: delete then re-apply (Jobs are immutable once started).
+#   kubectl -n bench delete job loadgen-go-compute
+# =============================================================================
+
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-go-compute
+  namespace: bench
+  labels: { app: loadgen, target: go-compute }
+spec:
+  suspend: true
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { app: loadgen, target: go-compute }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: loadgen
+          image: <REGISTRY>/loadgen:latest
+          env:
+            - name: TARGET_URL
+              value: "http://go-compute.bench.svc.cluster.local:8080/compute?limit=200000&workers=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1,10,50,100,250,500,1000"
+            - name: DURATION_SEC
+              value: "20"
+            - name: LABEL
+              value: "go-compute"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-go-network
+  namespace: bench
+  labels: { app: loadgen, target: go-network }
+spec:
+  suspend: true
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { app: loadgen, target: go-network }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: loadgen
+          image: <REGISTRY>/loadgen:latest
+          env:
+            - name: TARGET_URL
+              value: "http://go-network.bench.svc.cluster.local:8080/io?delayMs=50&calls=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1,50,200,500,1000,2000,5000"
+            - name: DURATION_SEC
+              value: "20"
+            - name: LABEL
+              value: "go-network"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-java-compute
+  namespace: bench
+  labels: { app: loadgen, target: java-compute }
+spec:
+  suspend: true
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { app: loadgen, target: java-compute }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: loadgen
+          image: <REGISTRY>/loadgen:latest
+          env:
+            - name: TARGET_URL
+              value: "http://java-compute.bench.svc.cluster.local:8080/compute?limit=200000&workers=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1,10,50,100,250,500,1000"
+            - name: DURATION_SEC
+              value: "20"
+            - name: LABEL
+              value: "java-compute"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: loadgen-java-network
+  namespace: bench
+  labels: { app: loadgen, target: java-network }
+spec:
+  suspend: true
+  backoffLimit: 0
+  template:
+    metadata:
+      labels: { app: loadgen, target: java-network }
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: loadgen
+          image: <REGISTRY>/loadgen:latest
+          env:
+            - name: TARGET_URL
+              value: "http://java-network.bench.svc.cluster.local:8080/io?delayMs=50&calls=1"
+            - name: CONCURRENCY_LEVELS
+              value: "1,50,200,500,1000,2000,5000"
+            - name: DURATION_SEC
+              value: "20"
+            - name: LABEL
+              value: "java-network"
+          resources:
+            requests: { cpu: "250m", memory: "256Mi" }
+            limits: { cpu: "1", memory: "512Mi" }

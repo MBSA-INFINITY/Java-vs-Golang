@@ -1,0 +1,81 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-network
+  labels:
+    app: go-network
+    app.kubernetes.io/part-of: go-network
+    app.openshift.io/runtime: golang
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-network
+  template:
+    metadata:
+      labels:
+        app: go-network
+        hydra.verint.com/owner: "mbsaiaditya"
+        hydra.verint.com/pci-compliant: "false"
+        hydra.verint.com/env: "dev"
+        hydra.verint.com/team: "mbsaiaditya"
+        hydra.verint.com/owning-vp: "jamie.williams"
+        hydra.verint.com/product-short-code: "edm"
+        hydra.verint.com/production: "false"
+    spec:
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: go-network
+          image: quay.hydra.verint.com/mbsaiaditya/go-network:v1
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: GOMAXPROCS
+              value: "1"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-network
+  labels:
+    app: go-network
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  selector:
+    app: go-network
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http

@@ -1,0 +1,89 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-diskio
+  labels:
+    app: go-diskio
+    app.kubernetes.io/part-of: go-diskio
+    app.openshift.io/runtime: golang
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-diskio
+  template:
+    metadata:
+      labels:
+        app: go-diskio
+        hydra.verint.com/owner: "mbsaiaditya"
+        hydra.verint.com/pci-compliant: "false"
+        hydra.verint.com/env: "dev"
+        hydra.verint.com/team: "mbsaiaditya"
+        hydra.verint.com/owning-vp: "jamie.williams"
+        hydra.verint.com/product-short-code: "edm"
+        hydra.verint.com/production: "false"
+    spec:
+      imagePullSecrets:
+        - name: sk-quay
+      containers:
+        - name: go-diskio
+          image: quay.hydra.verint.com/mbsaiaditya/go-diskio:v1
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: PORT
+              value: "8080"
+            - name: GOMAXPROCS
+              value: "1"
+            - name: DISKIO_DIR
+              value: "/data"
+          volumeMounts:
+            - name: diskio-data
+              mountPath: /data
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+      volumes:
+        - name: diskio-data
+          emptyDir: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-diskio
+  labels:
+    app: go-diskio
+    hydra.verint.com/owner: "mbsaiaditya"
+    hydra.verint.com/pci-compliant: "false"
+    hydra.verint.com/env: "dev"
+    hydra.verint.com/team: "mbsaiaditya"
+    hydra.verint.com/owning-vp: "jamie.williams"
+    hydra.verint.com/product-short-code: "edm"
+    hydra.verint.com/production: "false"
+spec:
+  selector:
+    app: go-diskio
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
